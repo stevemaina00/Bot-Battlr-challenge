@@ -17,7 +17,7 @@ function YourBotArmy({ bots, removeBot , deleteBot }) {
       <div className="ui five column grid">
         <div className="row bot-army-row">
           {mapBots}
-          Your Bot Army
+          Your Bots Army
         </div>
       </div>
     </div>

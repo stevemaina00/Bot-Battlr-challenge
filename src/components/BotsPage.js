@@ -2,7 +2,7 @@ import React, { useState , useEffect } from "react";
 import YourBotArmy from "./YourBotArmy";
 import BotCollection from "./BotCollection";
 
-const API = "http://localhost:8002/bots";
+
 
 function BotsPage() {
   //start here with your code for step one
@@ -10,13 +10,12 @@ function BotsPage() {
   const [bots, setBots] = useState([]);
   
   useEffect(() => {
-    fetch(API)
+    fetch("http://localhost:8002/bots")
     .then(res => res.json())
-    // .then(json => console.log(json))
     .then(setBots)
   },[])
 
-  function botList(bot){
+  function enlistBot(bot){
     console.log(bot);
     setBots(bots.map(b => b.id === bot.id ? {...b, army:true} : b));
   }
@@ -26,7 +25,7 @@ function BotsPage() {
     setBots(bots.map(b => b.id === bot.id ? {...b, army:false} : b));
   }
 
-  function BotDelete(bot){
+  function deleteBot(bot){
     // console.log("You're fired.")
     setBots(bots.filter(b => b.id !== bot.id))
   }
@@ -35,13 +34,13 @@ function BotsPage() {
       <YourBotArmy 
       bots={bots.filter(b => b.army)}
       removeBot ={removeBot}
-      BotDelete={BotDelete}
+      deleteBot={deleteBot}
       />
 
       <BotCollection 
       bots={bots}
-      botList={botList}
-      deleteBot={BotDelete}
+      enlistBot={enlistBot}
+      deleteBot={deleteBot}
       />
     </div>
   )
